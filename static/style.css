@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    background: #007bff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+nav a:hover {
+    background: #0056b3;
+}
+
+.card {
+    background: #f8f9fa;
+    padding: 15px;
+    margin: 10px 0;
+    border-left: 5px solid #007bff;
+    border-radius: 8px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input, select, button {
+    padding: 10px;
+    margin: 8px 0;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+button {
+    background: #28a745;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background: #007bff;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.small-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.small-link:hover {
+    text-decoration: underline;
+}
+
+canvas {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+table a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+table a:hover {
+    text-decoration: underline;
+}

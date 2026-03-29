@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить транзакцию</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Добавить транзакцию</h1>
+
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/categories">Категории</a>
+            <a href="/add_transaction">Добавить транзакцию</a>
+            <a href="/transactions">Все транзакции</a>
+            <a href="/monthly_report">Отчёт за месяц</a>
+            <a href="/analytics">Аналитика</a>
+        </nav>
+
+        <form action="/add_transaction" method="post">
+            <label>Сумма:</label>
+            <input type="number" step="0.01" name="amount" required>
+
+            <label>Категория:</label>
+            <select name="category_id" required>
+                {% for category in categories %}
+                    <option value="{{ category[0] }}">
+                        {{ category[1] }} ({{ category[2] }})
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label>Дата:</label>
+            <input type="date" name="date" required>
+
+            <label>Описание:</label>
+            <input type="text" name="description">
+
+            <button type="submit">Добавить транзакцию</button>
+        </form>
+    </div>
+</body>
+</html>

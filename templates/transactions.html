@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Транзакции</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Все транзакции</h1>
+
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/categories">Категории</a>
+            <a href="/add_transaction">Добавить транзакцию</a>
+            <a href="/transactions">Все транзакции</a>
+            <a href="/monthly_report">Отчёт за месяц</a>
+            <a href="/analytics">Аналитика</a>
+        </nav>
+
+        <h2>Фильтр по месяцу</h2>
+        <form action="/transactions" method="post">
+            <label>Выберите месяц:</label>
+            <input type="month" name="month" value="{{ selected_month }}">
+            <button type="submit">Показать</button>
+        </form>
+
+        {% if selected_month %}
+            <p><strong>Показаны транзакции за:</strong> {{ selected_month }}</p>
+            <p><a href="/transactions">Сбросить фильтр</a></p>
+        {% endif %}
+
+        {% if transactions %}
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Сумма</th>
+                    <th>Категория</th>
+                    <th>Тип</th>
+                    <th>Дата</th>
+                    <th>Описание</th>
+                    <th>Редактирование</th>
+                    <th>Удаление</th>
+                </tr>
+
+                {% for t in transactions %}
+                    <tr>
+                        <td>{{ t[0] }}</td>
+                        <td>{{ t[1] }}</td>
+                        <td>{{ t[2] }}</td>
+                        <td>{{ t[3] }}</td>
+                        <td>{{ t[4] }}</td>
+                        <td>{{ t[5] }}</td>
+                        <td>
+                            <a href="/edit_transaction/{{ t[0] }}">Редактировать</a>
+                        </td>
+                        <td>
+                            <form action="/delete_transaction/{{ t[0] }}" method="post"
+                                  onsubmit="return confirm('Вы уверены, что хотите удалить эту транзакцию?');">
+                                <button type="submit">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>Транзакций не найдено.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

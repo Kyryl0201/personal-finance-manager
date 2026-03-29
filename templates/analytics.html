@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Аналитика</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Аналитика расходов</h1>
+
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/categories">Категории</a>
+            <a href="/add_transaction">Добавить транзакцию</a>
+            <a href="/transactions">Все транзакции</a>
+            <a href="/monthly_report">Отчёт за месяц</a>
+            <a href="/analytics">Аналитика</a>
+        </nav>
+
+        <h2>Расходы по дням</h2>
+        <canvas id="dailyChart"></canvas>
+
+        <h2>Расходы по неделям</h2>
+        <canvas id="weeklyChart"></canvas>
+
+        <h2>Расходы по месяцам</h2>
+        <canvas id="monthlyChart"></canvas>
+    </div>
+
+    <script>
+        const dailyLabels = JSON.parse('{{ daily_labels | tojson | safe }}');
+        const dailyValues = JSON.parse('{{ daily_values | tojson | safe }}');
+
+        const weeklyLabels = JSON.parse('{{ weekly_labels | tojson | safe }}');
+        const weeklyValues = JSON.parse('{{ weekly_values | tojson | safe }}');
+
+        const monthlyLabels = JSON.parse('{{ monthly_labels | tojson | safe }}');
+        const monthlyValues = JSON.parse('{{ monthly_values | tojson | safe }}');
+
+        new Chart(document.getElementById('dailyChart'), {
+            type: 'bar',
+            data: {
+                labels: dailyLabels,
+                datasets: [{
+                    label: 'Расходы по дням',
+                    data: dailyValues
+                }]
+            }
+        });
+
+        new Chart(document.getElementById('weeklyChart'), {
+            type: 'line',
+            data: {
+                labels: weeklyLabels,
+                datasets: [{
+                    label: 'Расходы по неделям',
+                    data: weeklyValues
+                }]
+            }
+        });
+
+        new Chart(document.getElementById('monthlyChart'), {
+            type: 'pie',
+            data: {
+                labels: monthlyLabels,
+                datasets: [{
+                    label: 'Расходы по месяцам',
+                    data: monthlyValues
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Finance Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Finance Manager</h1>
+
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/categories">Категории</a>
+            <a href="/add_transaction">Добавить транзакцию</a>
+            <a href="/transactions">Все транзакции</a>
+            <a href="/monthly_report">Отчёт за месяц</a>
+            <a href="/analytics">Аналитика</a>
+        </nav>
+
+        <div class="card">
+            <h2>Общий доход</h2>
+            <p>{{ income }}</p>
+        </div>
+
+        <div class="card">
+            <h2>Общий расход</h2>
+            <p>{{ expense }}</p>
+        </div>
+
+        <div class="card">
+            <h2>Баланс</h2>
+            <p>{{ balance }}</p>
+        </div>
+    </div>
+</body>
+</html>

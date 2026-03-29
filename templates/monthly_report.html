@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отчёт за месяц</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Отчёт за месяц</h1>
+
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/categories">Категории</a>
+            <a href="/add_transaction">Добавить транзакцию</a>
+            <a href="/transactions">Все транзакции</a>
+            <a href="/monthly_report">Отчёт за месяц</a>
+            <a href="/analytics">Аналитика</a>
+        </nav>
+
+        <form method="post">
+            <label>Выберите месяц:</label>
+            <input type="month" name="month" required>
+            <button type="submit">Показать отчёт</button>
+        </form>
+
+        {% if selected_month %}
+            <div class="card">
+                <p><strong>Месяц:</strong> {{ selected_month }}</p>
+                <p><strong>Общий доход:</strong> {{ total_income }}</p>
+                <p><strong>Общий расход:</strong> {{ total_expense }}</p>
+                <p><strong>Баланс:</strong> {{ balance }}</p>
+            </div>
+
+            <h2>Детализация по категориям</h2>
+
+            {% if report_data %}
+                <table>
+                    <tr>
+                        <th>Категория</th>
+                        <th>Тип</th>
+                        <th>Сумма</th>
+                    </tr>
+                    {% for row in report_data %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{ row[1] }}</td>
+                            <td>{{ row[2] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>За этот месяц данных нет.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
